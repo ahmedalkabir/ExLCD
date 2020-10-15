@@ -77,11 +77,14 @@ public:
         }
     }
 
-    // setup callback function
-    int callback(char c, FILE *stream)
+    // clear lcd based on the row number
+    void clearLcd(uint8_t row)
     {
-        T::write(c);
-        return 0;
+        for (uint8_t i = 0; i < _col; i++)
+        {
+            T::print(" ");
+            T::setCursor(i, row);
+        }
     }
 
 private:
