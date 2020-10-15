@@ -3,6 +3,28 @@ exLCD it's extended LCD library to extend some functionality of LCD libraries
 the reason of creating this library it's to improve the way of showing data
 to lcd displays and provide a neat way of formating by including printf like functions
 
+There's three distinctive methods inside the library 
+
+```c++
+// called first inside the setup block
+// used to initialize the library based on its column and row
+// and the user must supply the callback function to this metho
+// to be able using printf method
+void begin(int col, int row, callback_func cb);
+
+// preferable to use instead of normal print because of 
+// you can specifiy which column or row unless you have to use
+// setCursor and you the old buffer will be present on the display 
+// which is annoying.
+void print(uint8_t col, uint8_t row, const char *text);
+
+// printf-like method which the most preferable one to me 
+// and use it consistently because of flexibility and most of 
+// format control work this method.
+void printf(uint8_t col, uint8_t row, const char *__fmt, ...);
+```
+
+
 # How to use it 
 Well, you need to instantiate from any LCD library you use as they all inherit from 
 LCD class and pass the object to exLCD class and use the exLCD instead of old one because 
@@ -43,3 +65,6 @@ void loop()
 
 }
 ```
+
+# TODO
+1. read text from the flash memory
